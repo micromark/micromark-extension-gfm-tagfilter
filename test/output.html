@@ -1,0 +1,23 @@
+&lt;title>
+<div title="&lt;title>"></div>
+<p><span title="<title>"></span></p>
+<div>&lt;title>&lt;/title></div>
+<p><span>&lt;title>&lt;/title></span></p>
+<p><b>&lt;textarea>&lt;/textarea></b></p>
+<p>&lt;script/src=&quot;#&quot;&gt;</p>
+&lt;SCRIPT SRC=http://xss.rocks/xss.js>&lt;/SCRIPT>
+<IMG SRC="javascript:alert('XSS');">
+<p>&lt;IMG SRC=javascript:alert('XSS')&gt;</p>
+<p>&lt;IMG SRC=<code>javascript:alert(&quot;RSnake says, 'XSS'&quot;)</code>&gt;</p>
+<p>&lt;IMG &quot;&quot;&quot;&gt;&lt;SCRIPT>alert(&quot;XSS&quot;)&lt;/SCRIPT>&quot;&gt;</p>
+<p>&lt;SCRIPT/XSS SRC=&quot;http://xss.rocks/xss.js&quot;&gt;&lt;/SCRIPT></p>
+<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=alert("XSS")>
+<p>&lt;&lt;SCRIPT>alert(&quot;XSS&quot;);//&lt;&lt;/SCRIPT></p>
+&lt;SCRIPT SRC=http://xss.rocks/xss.js?< B >
+
+&lt;SCRIPT SRC=//xss.rocks/.j>
+
+&lt;/TITLE>&lt;SCRIPT>alert("XSS");&lt;/SCRIPT>
+&lt;STYLE>li {list-style-image: url("javascript:alert('XSS')");}&lt;/STYLE><UL><LI>XSS</br>
+<p>javascript:/<em>--&gt;&lt;/title>&lt;/style>&lt;/textarea>&lt;/script>&lt;/xmp>&lt;svg/onload='+/&quot;/+/onmouseover=1/+/[</em>/[]/+alert(1)//'&gt;</p>
+&lt;STYLE>@import'http://xss.rocks/xss.css';&lt;/STYLE>
