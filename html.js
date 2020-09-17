@@ -15,33 +15,34 @@ var reFlow = /<(\/?)(iframe|noembed|noframes|plaintext|script|style|title|textar
 // global.
 var reText = new RegExp('^' + reFlow.source, 'i')
 
-var insideHtmlFlow
-var insideHtmlText
-
 function enterHtmlFlowWithTagFilter() {
-  insideHtmlFlow = true
   this.lineEndingIfNeeded()
+  this.setData('insideHtmlFlow', true)
   if (this.options.allowDangerousHtml) {
-    this.setIgnoreEncode(true)
+    this.setData('ignoreEncode', true)
   }
 }
 
 function enterHtmlTextWithTagFilter() {
-  insideHtmlText = true
+  this.setData('insideHtmlText', true)
   if (this.options.allowDangerousHtml) {
-    this.setIgnoreEncode(true)
+    this.setData('ignoreEncode', true)
   }
 }
 
 function exitHtml() {
-  this.setIgnoreEncode()
-  insideHtmlFlow = undefined
-  insideHtmlText = undefined
+  this.setData('ignoreEncode')
+  this.setData('insideHtmlFlow')
+  this.setData('insideHtmlText')
 }
 
 function exitData(token) {
   var value = this.sliceSerialize(token)
-  var filter = insideHtmlFlow ? reFlow : insideHtmlText ? reText : undefined
+  var filter = this.getData('insideHtmlFlow')
+    ? reFlow
+    : this.getData('insideHtmlText')
+    ? reText
+    : undefined
 
   if (filter && this.options.allowDangerousHtml) {
     value = value.replace(filter, '&lt;$1$2')
