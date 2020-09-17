@@ -1,11 +1,6 @@
-exports.enter = {
-  htmlFlow: enterHtmlFlowWithTagFilter,
-  htmlText: enterHtmlTextWithTagFilter
-}
 exports.exit = {
-  htmlFlow: exitHtml,
-  htmlText: exitHtml,
-  data: exitData
+  htmlFlowData: exitHtmlFlowData,
+  htmlTextData: exitHtmlTextData
 }
 
 // An opening or closing tag, followed by a case-insensitive specific tag name,
@@ -15,36 +10,18 @@ var reFlow = /<(\/?)(iframe|noembed|noframes|plaintext|script|style|title|textar
 // global.
 var reText = new RegExp('^' + reFlow.source, 'i')
 
-function enterHtmlFlowWithTagFilter() {
-  this.lineEndingIfNeeded()
-  this.setData('insideHtmlFlow', true)
-  if (this.options.allowDangerousHtml) {
-    this.setData('ignoreEncode', true)
-  }
+function exitHtmlFlowData(token) {
+  exitHtmlData.call(this, token, reFlow)
 }
 
-function enterHtmlTextWithTagFilter() {
-  this.setData('insideHtmlText', true)
-  if (this.options.allowDangerousHtml) {
-    this.setData('ignoreEncode', true)
-  }
+function exitHtmlTextData(token) {
+  exitHtmlData.call(this, token, reText)
 }
 
-function exitHtml() {
-  this.setData('ignoreEncode')
-  this.setData('insideHtmlFlow')
-  this.setData('insideHtmlText')
-}
-
-function exitData(token) {
+function exitHtmlData(token, filter) {
   var value = this.sliceSerialize(token)
-  var filter = this.getData('insideHtmlFlow')
-    ? reFlow
-    : this.getData('insideHtmlText')
-    ? reText
-    : undefined
 
-  if (filter && this.options.allowDangerousHtml) {
+  if (this.options.allowDangerousHtml) {
     value = value.replace(filter, '&lt;$1$2')
   }
 
