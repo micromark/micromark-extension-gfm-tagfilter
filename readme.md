@@ -8,17 +8,13 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-**[micromark][]** extension to support GitHub flavored markdown tagfilter.
+**[micromark][]** extension to support GitHub flavored markdown [tag filter][].
+This syntax extension matches the GFM spec and github.com.
+The [tag filter][] is a rather naïve attempt at XSS protection.
+It’s much better to use a proper HTML sanitizing algorithm.
 
 This package provides the low-level modules for integrating with the micromark
 tokenizer and the micromark HTML compiler.
-
-The [tag filter][] defined by GFM is a rather naïve attempt at XSS protection.
-It’s much better to use a proper HTML sanitizing algorithm.
-This syntax extension matches the GitHub parser.
-
-You probably shouldn’t use this package directly, but instead use
-[`mdast-util-gfm-tagfilter`][mdast-util-gfm-tagfilter] with **[mdast][]**.
 
 ## Install
 
@@ -35,7 +31,7 @@ npm install micromark-extension-gfm-tagfilter
 > Note: `html` is the default export.
 
 Support a [tag filter][] (protection against script, plaintext, etc).
-The export is an extensions for the default HTML compiler (to escape certain
+The export is an extension for the default HTML compiler (to escape certain
 tag names; can be passed in `htmlExtensions`).
 
 ## Related
@@ -44,8 +40,6 @@ tag names; can be passed in `htmlExtensions`).
     — markdown processor powered by plugins
 *   [`micromark/micromark`][micromark]
     — the smallest commonmark-compliant markdown parser that exists
-*   [`syntax-tree/mdast-util-gfm-tagfilter`][mdast-util-gfm-tagfilter]
-    — mdast utility to support the tagfilter
 *   [`syntax-tree/mdast-util-from-markdown`][from-markdown]
     — mdast parser using `micromark` to create mdast from markdown
 *   [`syntax-tree/mdast-util-to-markdown`][to-markdown]
@@ -112,9 +106,5 @@ abide by its terms.
 [to-markdown]: https://github.com/syntax-tree/mdast-util-to-markdown
 
 [remark]: https://github.com/remarkjs/remark
-
-[mdast]: https://github.com/syntax-tree/mdast
-
-[mdast-util-gfm-tagfilter]: https://github.com/syntax-tree/mdast-util-gfm-tagfilter
 
 [tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
