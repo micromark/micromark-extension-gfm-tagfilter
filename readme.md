@@ -61,9 +61,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/micromark/micromark-extension-gfm-tagfilter.svg
+[build-badge]: https://github.com/micromark/micromark-extension-gfm-tagfilter/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/micromark/micromark-extension-gfm-tagfilter
+[build]: https://github.com/micromark/micromark-extension-gfm-tagfilter/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/micromark/micromark-extension-gfm-tagfilter.svg
 
