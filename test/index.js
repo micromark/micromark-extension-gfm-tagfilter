@@ -2,7 +2,7 @@ var fs = require('fs')
 var path = require('path')
 var test = require('tape')
 var micromark = require('micromark')
-var html = require('../html')
+var html = require('../html.js')
 
 var input = fs.readFileSync(path.join(__dirname, 'input.md'))
 var output = fs.readFileSync(path.join(__dirname, 'output.html'), 'utf8')

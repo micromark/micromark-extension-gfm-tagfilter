@@ -5,7 +5,8 @@ exports.exit = {
 
 // An opening or closing tag, followed by a case-insensitive specific tag name,
 // followed by HTML whitespace, a greater than, or a slash.
-var reFlow = /<(\/?)(iframe|noembed|noframes|plaintext|script|style|title|textarea|xmp)(?=[\t\n\f\r />])/gi
+var reFlow =
+  /<(\/?)(iframe|noembed|noframes|plaintext|script|style|title|textarea|xmp)(?=[\t\n\f\r />])/gi
 // As HTML (text) parses tags separately (and v. strictly), we don’t need to be
 // global.
 var reText = new RegExp('^' + reFlow.source, 'i')
