@@ -9,12 +9,16 @@
 [![Chat][chat-badge]][chat]
 
 **[micromark][]** extension to support GitHub flavored markdown [tag filter][].
-This syntax extension matches the GFM spec and github.com.
+This extension matches the GFM spec and github.com.
 The [tag filter][] is a rather naïve attempt at XSS protection.
 It’s much better to use a proper HTML sanitizing algorithm.
 
-This package provides the low-level modules for integrating with the micromark
-tokenizer and the micromark HTML compiler.
+## When to use this
+
+You should probably use [`micromark-extension-gfm`][micromark-extension-gfm],
+which combines this package with other GFM features, instead.
+If for some weird reason you *have* to match GHs tagfilter, but not all the
+other GFM parts, use this package.
 
 ## Install
 
@@ -25,6 +29,26 @@ Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
 
 ```sh
 npm install micromark-extension-gfm-tagfilter
+```
+
+## Use
+
+```js
+import {micromark} from 'micromark'
+import {gfmTagfilterHtml} from 'micromark-extension-gfm-tagfilter'
+
+const output = micromark('XSS! <script>alert(1)</script>', {
+  allowDangerousHtml: true,
+  htmlExtensions: [gfmTagfilterHtml]
+})
+
+console.log(output)
+```
+
+Yields:
+
+```html
+<p>XSS! &lt;script>alert(1)&lt;/script></p>
 ```
 
 ## API
@@ -44,6 +68,10 @@ names (can be passed in `htmlExtensions`).
     — markdown processor powered by plugins
 *   [`micromark/micromark`][micromark]
     — the smallest commonmark-compliant markdown parser that exists
+*   [`micromark/micromark-extension-gfm`][micromark-extension-gfm]
+    — micromark extension combining this with other GFM features
+*   [`syntax-tree/mdast-util-gfm`](https://github.com/syntax-tree/mdast-util-gfm)
+    — mdast utility to support GFM
 *   [`syntax-tree/mdast-util-from-markdown`][from-markdown]
     — mdast parser using `micromark` to create mdast from markdown
 *   [`syntax-tree/mdast-util-to-markdown`][to-markdown]
@@ -112,3 +140,5 @@ abide by its terms.
 [remark]: https://github.com/remarkjs/remark
 
 [tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
+
+[micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
