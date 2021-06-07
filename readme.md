@@ -18,6 +18,9 @@ tokenizer and the micromark HTML compiler.
 
 ## Install
 
+This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
+Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
+
 [npm][]:
 
 ```sh
@@ -26,13 +29,14 @@ npm install micromark-extension-gfm-tagfilter
 
 ## API
 
-### `html`
+This package exports the following identifiers: `gfmTagfilterHtml`.
+There is no default export.
 
-> Note: `html` is the default export.
+### `gfmTagfilterHtml`
 
 Support a [tag filter][] (protection against script, plaintext, etc).
-The export is an extension for the default HTML compiler (to escape certain
-tag names; can be passed in `htmlExtensions`).
+The export is an extension for the micromark compiler to escape certain tag
+names (can be passed in `htmlExtensions`).
 
 ## Related
 
