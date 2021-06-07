@@ -1,3 +1,9 @@
+/**
+ * @typedef {import('micromark-util-types').HtmlExtension} HtmlExtension
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').CompileContext} CompileContext
+ */
+
 // An opening or closing tag, followed by a case-insensitive specific tag name,
 // followed by HTML whitespace, a greater than, or a slash.
 const reFlow =
@@ -6,6 +12,7 @@ const reFlow =
 // global.
 const reText = new RegExp('^' + reFlow.source, 'i')
 
+/** @type {HtmlExtension} */
 export const gfmTagfilterHtml = {
   exit: {
     htmlFlowData(token) {
@@ -17,6 +24,11 @@ export const gfmTagfilterHtml = {
   }
 }
 
+/**
+ * @this {CompileContext}
+ * @param {Token} token
+ * @param {RegExp} filter
+ */
 function exitHtmlData(token, filter) {
   let value = this.sliceSerialize(token)
 
