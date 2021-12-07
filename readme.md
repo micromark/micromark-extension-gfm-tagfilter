@@ -8,27 +8,62 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-**[micromark][]** extension to support GitHub flavored markdown [tag filter][].
-This extension matches the GFM spec and github.com.
-The [tag filter][] is a rather naïve attempt at XSS protection.
-It’s much better to use a proper HTML sanitizing algorithm.
+**[micromark][]** extension to support GitHub flavored markdown (GFM)
+[tag filter][].
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When to use this](#when-to-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`gfmTagfilterHtml`](#gfmtagfilterhtml)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Security](#security)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a micromark extension to add support for GFMs “tag filter”.
 
 ## When to use this
 
-You should probably use [`micromark-extension-gfm`][micromark-extension-gfm],
-which combines this package with other GFM features, instead.
-If for some weird reason you *have* to match GHs tagfilter, but not all the
-other GFM parts, use this package.
+In many cases, when working with micromark, you’d want to use
+[`micromark-extension-gfm`][micromark-extension-gfm] instead, which combines
+this package with other GFM features.
+
+This package exists for completeness
+The tag filter is a naïve attempt at XSS protection.
+You should use a proper HTML sanitizing algorithm.
+
+When working with syntax trees ([mdast][]) or [remark][], use
+[`rehype-sanitize`][rehype-sanitize] instead.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
 
 ```sh
 npm install micromark-extension-gfm-tagfilter
+```
+
+In Deno with [Skypack][]:
+
+```js
+import {gfmTagfilterHtml} from 'https://cdn.skypack.dev/micromark-extension-gfm-tagfilter@1?dts'
+```
+
+In browsers with [Skypack][]:
+
+```html
+<script type="module">
+  import {gfmTagfilterHtml} from 'https://cdn.skypack.dev/micromark-extension-gfm-tagfilter@1?min'
+</script>
 ```
 
 ## Use
@@ -53,29 +88,39 @@ Yields:
 
 ## API
 
-This package exports the following identifiers: `gfmTagfilterHtml`.
+This package exports the following identifier: `gfmTagfilterHtml`.
 There is no default export.
 
 ### `gfmTagfilterHtml`
 
-Support a [tag filter][] (protection against script, plaintext, etc).
-The export is an extension for the micromark compiler to escape certain tag
-names (can be passed in `htmlExtensions`).
+An extension to filter some HTML (script, plaintext, etc.) out when compiling
+HTML (can be passed in `htmlExtensions`).
+
+## Types
+
+This package is fully typed with [TypeScript][].
+There are no additional exported types.
+
+## Compatibility
+
+This package is at least compatible with all maintained versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+It also works in Deno and modern browsers.
+
+## Security
+
+While micromark is safe by default, this extension only does something when
+`allowDangerousHtml: true` is passed, which is an unsafe option.
+This package is **not safe**.
 
 ## Related
 
-*   [`remarkjs/remark`][remark]
-    — markdown processor powered by plugins
-*   [`micromark/micromark`][micromark]
-    — the smallest commonmark-compliant markdown parser that exists
-*   [`micromark/micromark-extension-gfm`][micromark-extension-gfm]
-    — micromark extension combining this with other GFM features
-*   [`syntax-tree/mdast-util-gfm`](https://github.com/syntax-tree/mdast-util-gfm)
-    — mdast utility to support GFM
-*   [`syntax-tree/mdast-util-from-markdown`][from-markdown]
-    — mdast parser using `micromark` to create mdast from markdown
-*   [`syntax-tree/mdast-util-to-markdown`][to-markdown]
-    — mdast serializer to create markdown from mdast
+*   [`syntax-tree/mdast-util-gfm`][mdast-util-gfm]
+    — support GFM in mdast
+*   [`remarkjs/remark-gfm`][remark-gfm]
+    — support GFM in remark
+*   [`rehypejs/rehype-sanitize`][rehype-sanitize]
+    — sanitize HTML in rehype
 
 ## Contribute
 
@@ -121,6 +166,8 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[skypack]: https://www.skypack.dev
+
 [license]: license
 
 [author]: https://wooorm.com
@@ -131,14 +178,22 @@ abide by its terms.
 
 [coc]: https://github.com/micromark/.github/blob/HEAD/code-of-conduct.md
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[typescript]: https://www.typescriptlang.org
+
 [micromark]: https://github.com/micromark/micromark
-
-[from-markdown]: https://github.com/syntax-tree/mdast-util-from-markdown
-
-[to-markdown]: https://github.com/syntax-tree/mdast-util-to-markdown
 
 [remark]: https://github.com/remarkjs/remark
 
-[tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
+[mdast]: https://github.com/syntax-tree/mdast
 
 [micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
+
+[mdast-util-gfm]: https://github.com/syntax-tree/mdast-util-gfm
+
+[remark-gfm]: https://github.com/remarkjs/remark-gfm
+
+[rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
+
+[tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
