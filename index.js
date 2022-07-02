@@ -4,20 +4,20 @@
  * @typedef {import('micromark-util-types').CompileContext} CompileContext
  */
 
-/**
- * An opening or closing tag, followed by a case-insensitive specific tag name,
- * followed by HTML whitespace, a greater than, or a slash.
- */
+// An opening or closing tag, followed by a case-insensitive specific tag name,
+// followed by HTML whitespace, a greater than, or a slash.
 const reFlow =
   /<(\/?)(iframe|noembed|noframes|plaintext|script|style|title|textarea|xmp)(?=[\t\n\f\r />])/gi
 
-/**
- * As HTML (text) parses tags separately (and v. strictly), we don’t need to be
- * global.
- */
+// As HTML (text) parses tags separately (and v. strictly), we don’t need to be
+// global.
 const reText = new RegExp('^' + reFlow.source, 'i')
 
-/** @type {HtmlExtension} */
+/**
+ * HTML extension for micromark (passed in `htmlExtensions`).
+ *
+ * @type {HtmlExtension}
+ */
 export const gfmTagfilterHtml = {
   exit: {
     htmlFlowData(token) {
