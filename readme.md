@@ -8,7 +8,7 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[micromark][] extension support GFM [tag filter][].
+[micromark][] extension to support GFM [tag filter][].
 
 ## Contents
 
