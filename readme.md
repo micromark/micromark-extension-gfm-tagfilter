@@ -8,8 +8,7 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-**[micromark][]** extension to support GitHub flavored markdown (GFM)
-[tag filter][].
+[micromark][] extension support GFM [tag filter][].
 
 ## Contents
 
@@ -19,6 +18,9 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`gfmTagfilterHtml`](#gfmtagfilterhtml)
+*   [HTML](#html)
+*   [CSS](#css)
+*   [Syntax](#syntax)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
 *   [Security](#security)
@@ -28,25 +30,32 @@
 
 ## What is this?
 
-This package is a micromark extension to add support for GFMs “tag filter”.
-
-## When to use this
-
-In many cases, when working with micromark, you’d want to use
-[`micromark-extension-gfm`][micromark-extension-gfm] instead, which combines
-this package with other GFM features.
-
-This package exists for completeness
+This package contains extensions that add support for the tagfilter enabled by
+GFM to [`micromark`][micromark].
+The tagfilter is kinda weird and kinda useless.
+This package exists for completeness.
 The tag filter is a naïve attempt at XSS protection.
 You should use a proper HTML sanitizing algorithm.
 
-When working with syntax trees ([mdast][]) or [remark][], use
-[`rehype-sanitize`][rehype-sanitize] instead.
+## When to use this
+
+These tools are all low-level.
+In many cases, you want to use [`remark-gfm`][plugin] with remark instead.
+It doesn’t use this extension, as with remark (and rehype) there’s a better
+alternative: [`rehype-sanitize`][rehype-sanitize].
+
+Even when you want to use `micromark`, you likely want to use
+[`micromark-extension-gfm`][micromark-extension-gfm] to support all GFM
+features.
+That extension includes this extension.
+
+When working with syntax trees (mdast), you should turn it into hast and then
+use [`hast-util-sanitize`][hast-util-sanitize].
 
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, or 16.0+), install with [npm][]:
+In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
 
 ```sh
 npm install micromark-extension-gfm-tagfilter
@@ -88,23 +97,35 @@ Yields:
 
 ## API
 
-This package exports the following identifier: `gfmTagfilterHtml`.
+This package exports the identifier `gfmTagfilterHtml`.
 There is no default export.
 
 ### `gfmTagfilterHtml`
 
-An extension to filter some HTML (script, plaintext, etc.) out when compiling
-HTML (can be passed in `htmlExtensions`).
+HTML extension for micromark (passed in `htmlExtensions`).
+
+## HTML
+
+GFM tagfilter removes certain dangerous HTML tags: `iframe`, `noembed`,
+`noframes`, `plaintext`, `script`, `style`, `title`, `textarea`, and `xmp`.
+
+## CSS
+
+This package does not relate to CSS.
+
+## Syntax
+
+This package does not change how markdown is parsed.
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-There are no additional exported types.
+It exports no additional types.
 
 ## Compatibility
 
 This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, and 16.0+.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
 It also works in Deno and modern browsers.
 
 ## Security
@@ -117,7 +138,7 @@ This package is **not safe**.
 
 *   [`syntax-tree/mdast-util-gfm`][mdast-util-gfm]
     — support GFM in mdast
-*   [`remarkjs/remark-gfm`][remark-gfm]
+*   [`remarkjs/remark-gfm`][plugin]
     — support GFM in remark
 *   [`rehypejs/rehype-sanitize`][rehype-sanitize]
     — sanitize HTML in rehype
@@ -172,11 +193,11 @@ abide by its terms.
 
 [author]: https://wooorm.com
 
-[contributing]: https://github.com/micromark/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/micromark/.github/blob/main/contributing.md
 
-[support]: https://github.com/micromark/.github/blob/HEAD/support.md
+[support]: https://github.com/micromark/.github/blob/main/support.md
 
-[coc]: https://github.com/micromark/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/micromark/.github/blob/main/code-of-conduct.md
 
 [esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 
@@ -184,16 +205,14 @@ abide by its terms.
 
 [micromark]: https://github.com/micromark/micromark
 
-[remark]: https://github.com/remarkjs/remark
-
-[mdast]: https://github.com/syntax-tree/mdast
-
 [micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
 
 [mdast-util-gfm]: https://github.com/syntax-tree/mdast-util-gfm
 
-[remark-gfm]: https://github.com/remarkjs/remark-gfm
+[plugin]: https://github.com/remarkjs/remark-gfm
 
 [rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
+
+[hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
 [tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
