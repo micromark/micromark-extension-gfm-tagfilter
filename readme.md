@@ -18,6 +18,7 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`gfmTagfilterHtml`](#gfmtagfilterhtml)
+*   [Authoring](#authoring)
 *   [HTML](#html)
 *   [CSS](#css)
 *   [Syntax](#syntax)
@@ -30,8 +31,8 @@
 
 ## What is this?
 
-This package contains extensions that add support for the tagfilter enabled by
-GFM to [`micromark`][micromark].
+This package contains an extension that adds support for the tagfilter enabled
+by GFM to [`micromark`][micromark].
 The tagfilter is kinda weird and kinda useless.
 This package exists for completeness.
 The tag filter is a naïve attempt at XSS protection.
@@ -39,23 +40,23 @@ You should use a proper HTML sanitizing algorithm.
 
 ## When to use this
 
-These tools are all low-level.
-In many cases, you want to use [`remark-gfm`][plugin] with remark instead.
-It doesn’t use this extension, as with remark (and rehype) there’s a better
-alternative: [`rehype-sanitize`][rehype-sanitize].
+This project is useful when you want to match how GitHub works.
+You can use this extension when you are working with [`micromark`][micromark]
+already.
+When you do, you can instead use
+[`micromark-extension-gfm`][micromark-extension-gfm], which includes this
+extension, to support all GFM features.
 
-Even when you want to use `micromark`, you likely want to use
-[`micromark-extension-gfm`][micromark-extension-gfm] to support all GFM
-features.
-That extension includes this extension.
+When you want to deal with syntax trees, you should instead use
+[`hast-util-sanitize`][hast-util-sanitize].
 
-When working with syntax trees (mdast), you should turn it into hast and then
-use [`hast-util-sanitize`][hast-util-sanitize].
+When you use remark and rehype, you should use
+[`rehype-sanitize`][rehype-sanitize].
 
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
+In Node.js (version 14.14+), install with [npm][]:
 
 ```sh
 npm install micromark-extension-gfm-tagfilter
@@ -97,12 +98,19 @@ Yields:
 
 ## API
 
-This package exports the identifier `gfmTagfilterHtml`.
+This package exports the identifier
+[`gfmTagfilterHtml`][api-gfm-tagfilter-html].
 There is no default export.
 
 ### `gfmTagfilterHtml`
 
-HTML extension for micromark (passed in `htmlExtensions`).
+Extension for `micromark` that can be passed in `htmlExtensions`, to
+support GitHub’s weird and useless tagfilter when serializing to HTML.
+([`HtmlExtension`][micromark-html-extension]).
+
+## Authoring
+
+This package does relates to malicious authors, not decent authors.
 
 ## HTML
 
@@ -124,9 +132,12 @@ It exports no additional types.
 
 ## Compatibility
 
-This package is at least compatible with all maintained versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
-It also works in Deno and modern browsers.
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 14.14+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
+This extension works with `micromark` version 3+.
 
 ## Security
 
@@ -136,12 +147,12 @@ This package is **not safe**.
 
 ## Related
 
-*   [`syntax-tree/mdast-util-gfm`][mdast-util-gfm]
-    — support GFM in mdast
-*   [`remarkjs/remark-gfm`][plugin]
-    — support GFM in remark
-*   [`rehypejs/rehype-sanitize`][rehype-sanitize]
-    — sanitize HTML in rehype
+*   [`micromark-extension-gfm`][micromark-extension-gfm]
+    — support all of GFM
+*   [`hast-util-sanitize`][hast-util-sanitize]
+    — hast utility to make trees safe
+*   [`rehype-sanitize`][rehype-sanitize]
+    — rehype plugin to sanitize HTML
 
 ## Contribute
 
@@ -205,14 +216,14 @@ abide by its terms.
 
 [micromark]: https://github.com/micromark/micromark
 
+[micromark-html-extension]: https://github.com/micromark/micromark#htmlextension
+
 [micromark-extension-gfm]: https://github.com/micromark/micromark-extension-gfm
-
-[mdast-util-gfm]: https://github.com/syntax-tree/mdast-util-gfm
-
-[plugin]: https://github.com/remarkjs/remark-gfm
 
 [rehype-sanitize]: https://github.com/rehypejs/rehype-sanitize
 
 [hast-util-sanitize]: https://github.com/syntax-tree/hast-util-sanitize
 
 [tag filter]: https://github.github.com/gfm/#disallowed-raw-html-extension-
+
+[api-gfm-tagfilter-html]: #gfmtagfilterhtml
