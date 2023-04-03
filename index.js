@@ -14,7 +14,8 @@ const reFlow =
 const reText = new RegExp('^' + reFlow.source, 'i')
 
 /**
- * HTML extension for micromark (passed in `htmlExtensions`).
+ * Extension for `micromark` that can be passed in `htmlExtensions`, to
+ * support GitHub’s weird and useless tagfilter when serializing to HTML.
  *
  * @type {HtmlExtension}
  */
