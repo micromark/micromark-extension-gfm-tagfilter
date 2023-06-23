@@ -65,14 +65,14 @@ npm install micromark-extension-gfm-tagfilter
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import {gfmTagfilterHtml} from 'https://esm.sh/micromark-extension-gfm-tagfilter@1'
+import {gfmTagfilterHtml} from 'https://esm.sh/micromark-extension-gfm-tagfilter@2'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import {gfmTagfilterHtml} from 'https://esm.sh/micromark-extension-gfm-tagfilter@1?bundle'
+  import {gfmTagfilterHtml} from 'https://esm.sh/micromark-extension-gfm-tagfilter@2?bundle'
 </script>
 ```
 
