@@ -56,7 +56,7 @@ When you use remark and rehype, you should use
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 14.14+), install with [npm][]:
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install micromark-extension-gfm-tagfilter
@@ -115,7 +115,7 @@ GitHubs weird and useless tagfilter when serializing to HTML
 
 ## Authoring
 
-This package does relates to malicious authors, not decent authors.
+This package relates to malicious authors, not decent authors.
 
 ## HTML
 
@@ -137,12 +137,15 @@ It exports no additional types.
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 14.14+.
-Our projects sometimes work with older versions, but this is not guaranteed.
 
-This extension works with `micromark` version 3+.
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line,
+`micromark-extension-gfm-tagfilter@^1`, compatible with Node.js 12.
+
+This package works with `micromark` version `3` and later.
 
 ## Security
 
@@ -187,9 +190,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/micromark-extension-gfm-tagfilter
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/micromark-extension-gfm-tagfilter.svg
+[size-badge]: https://img.shields.io/badge/dynamic/json?label=minzipped%20size&query=$.size.compressedSize&url=https://deno.bundlejs.com/?q=micromark-extension-gfm-tagfilter
 
-[size]: https://bundlephobia.com/result?p=micromark-extension-gfm-tagfilter
+[size]: https://bundlejs.com/?q=micromark-extension-gfm-tagfilter
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
