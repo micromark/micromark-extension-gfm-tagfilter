@@ -2,8 +2,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import test from 'node:test'
 import {micromark} from 'micromark'
-// . import {gfmTagfilterHtml} from 'micromark-extension-gfm-tagfilter'
-import {gfmTagfilterHtml} from '../index.js'
+import {gfmTagfilterHtml} from 'micromark-extension-gfm-tagfilter'
 
 const input = await fs.readFile(new URL('input.md', import.meta.url))
 const output = String(
@@ -12,9 +11,10 @@ const output = String(
 
 test('markdown -> html (micromark)', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('../index.js')).sort(), [
-      'gfmTagfilterHtml'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('micromark-extension-gfm-tagfilter')).sort(),
+      ['gfmTagfilterHtml']
+    )
   })
 
   await t.test(
