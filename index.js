@@ -13,6 +13,8 @@ const reFlow =
 // global.
 const reText = new RegExp('^' + reFlow.source, 'i')
 
+// To do: next major: expose function.
+
 /**
  * Extension for `micromark` that can be passed in `htmlExtensions`, to
  * support GitHub’s weird and useless tagfilter when serializing to HTML.
@@ -34,6 +36,7 @@ export const gfmTagfilterHtml = {
  * @this {CompileContext}
  * @param {Token} token
  * @param {RegExp} filter
+ * @returns {undefined}
  */
 function exitHtmlData(token, filter) {
   let value = this.sliceSerialize(token)
