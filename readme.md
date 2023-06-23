@@ -17,7 +17,7 @@
 *   [Install](#install)
 *   [Use](#use)
 *   [API](#api)
-    *   [`gfmTagfilterHtml`](#gfmtagfilterhtml)
+    *   [`gfmTagfilterHtml()`](#gfmtagfilterhtml)
 *   [Authoring](#authoring)
 *   [HTML](#html)
 *   [CSS](#css)
@@ -84,7 +84,7 @@ import {gfmTagfilterHtml} from 'micromark-extension-gfm-tagfilter'
 
 const output = micromark('XSS! <script>alert(1)</script>', {
   allowDangerousHtml: true,
-  htmlExtensions: [gfmTagfilterHtml]
+  htmlExtensions: [gfmTagfilterHtml()]
 })
 
 console.log(output)
@@ -102,10 +102,15 @@ This package exports the identifier
 [`gfmTagfilterHtml`][api-gfm-tagfilter-html].
 There is no default export.
 
-### `gfmTagfilterHtml`
+### `gfmTagfilterHtml()`
 
-Extension for `micromark` that can be passed in `htmlExtensions`, to
-support GitHub’s weird and useless tagfilter when serializing to HTML.
+Create an HTML extension for `micromark` to support GitHubs weird and
+useless tagfilter when serializing to HTML.
+
+###### Returns
+
+Extension for `micromark` that can be passed in `htmlExtensions` to support
+GitHubs weird and useless tagfilter when serializing to HTML
 ([`HtmlExtension`][micromark-html-extension]).
 
 ## Authoring

@@ -23,7 +23,7 @@ test('markdown -> html (micromark)', async function (t) {
       assert.equal(
         micromark(input, {
           allowDangerousHtml: true,
-          htmlExtensions: [gfmTagfilterHtml]
+          htmlExtensions: [gfmTagfilterHtml()]
         }),
         output
       )
@@ -32,7 +32,7 @@ test('markdown -> html (micromark)', async function (t) {
 
   await t.test('should not turn `allowDangerousHtml` on', async function () {
     assert.equal(
-      micromark('a <i>\n<script>', {htmlExtensions: [gfmTagfilterHtml]}),
+      micromark('a <i>\n<script>', {htmlExtensions: [gfmTagfilterHtml()]}),
       '<p>a &lt;i&gt;</p>\n&lt;script&gt;'
     )
   })
