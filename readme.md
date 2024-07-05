@@ -12,22 +12,22 @@
 
 ## Contents
 
-*   [What is this?](#what-is-this)
-*   [When to use this](#when-to-use-this)
-*   [Install](#install)
-*   [Use](#use)
-*   [API](#api)
-    *   [`gfmTagfilterHtml()`](#gfmtagfilterhtml)
-*   [Authoring](#authoring)
-*   [HTML](#html)
-*   [CSS](#css)
-*   [Syntax](#syntax)
-*   [Types](#types)
-*   [Compatibility](#compatibility)
-*   [Security](#security)
-*   [Related](#related)
-*   [Contribute](#contribute)
-*   [License](#license)
+* [What is this?](#what-is-this)
+* [When to use this](#when-to-use-this)
+* [Install](#install)
+* [Use](#use)
+* [API](#api)
+  * [`gfmTagfilterHtml()`](#gfmtagfilterhtml)
+* [Authoring](#authoring)
+* [HTML](#html)
+* [CSS](#css)
+* [Syntax](#syntax)
+* [Types](#types)
+* [Compatibility](#compatibility)
+* [Security](#security)
+* [Related](#related)
+* [Contribute](#contribute)
+* [License](#license)
 
 ## What is this?
 
@@ -155,12 +155,12 @@ This package is **not safe**.
 
 ## Related
 
-*   [`micromark-extension-gfm`][micromark-extension-gfm]
-    — support all of GFM
-*   [`hast-util-sanitize`][hast-util-sanitize]
-    — hast utility to make trees safe
-*   [`rehype-sanitize`][rehype-sanitize]
-    — rehype plugin to sanitize HTML
+* [`micromark-extension-gfm`][micromark-extension-gfm]
+  — support all of GFM
+* [`hast-util-sanitize`][hast-util-sanitize]
+  — hast utility to make trees safe
+* [`rehype-sanitize`][rehype-sanitize]
+  — rehype plugin to sanitize HTML
 
 ## Contribute
 
